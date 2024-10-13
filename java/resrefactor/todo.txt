@@ -1,0 +1,3 @@
+- handle string formatting
+- handle non-string res values
+

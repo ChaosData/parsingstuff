@@ -1,0 +1,56 @@
+apply plugin: 'java'
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  //noinspection GroovyAssignabilityCheck
+  dependencies {
+    classpath 'com.github.jengelman.gradle.plugins:shadow:+'
+  }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+
+repositories {
+  maven {
+    url "https://repo1.maven.org/maven2"
+  }
+}
+
+//noinspection GroovyAssignabilityCheck
+dependencies {
+  compile group: 'com.google.code.gson', name: 'gson', version: '+'
+  compile group: 'com.google.guava', name:'guava', version:'+'
+
+  compile group: 'com.github.javaparser', name:'javaparser-core', version:'+'
+
+}
+
+//noinspection GroovyAssignabilityCheck
+sourceSets {
+  //noinspection GroovyAssignabilityCheck
+  main {
+    java {
+      srcDirs = ['./src']
+    }
+
+    resources {
+      srcDirs = ['./res']
+    }
+  }
+}
+
+//noinspection GroovyAssignabilityCheck
+jar {
+  manifest {
+    attributes (
+      "Manifest-Version": "1.0",
+      "Main-Class": "Main"
+    )
+  }
+}
+
+defaultTasks "shadowJar"
